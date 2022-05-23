@@ -14,27 +14,8 @@ const useStyles = createStyles((theme) => ({
   }
 }));
 
-const convertToGameGrid = (currentGrid) => {
-  const cols = currentGrid.length;
-  const rows = currentGrid[1].length;
-
-  let newGrid = Array()
-  for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < cols; col++) {
-      if (!newGrid[row]) {
-        newGrid[row] = []
-      }
-
-      newGrid[row][col] = currentGrid[col][row]
-    }
-  }
-
-  return newGrid;
-};
-
 export default ({ gameGrid, onRowClick }) => {
   const { classes } = useStyles();
-  console.log(convertToGameGrid(gameGrid))
 
   const onInternalClick = (row) => {
     if (onRowClick) onRowClick(row);
@@ -43,7 +24,7 @@ export default ({ gameGrid, onRowClick }) => {
   return (
     <div className={classes.start}>
       <Grid style={{ width: '100%' }} columns={7} gutter={15}>
-        {convertToGameGrid(gameGrid).map((cols, col) => {
+        {gameGrid.map((cols, col) => {
           return <Fragment key={col}>
             {cols.map((value, row) => {
               return <Grid.Col key={`k-${col}-${row}`} span={1} className={classes.test} onClick={() => onInternalClick(row)}>

@@ -1,6 +1,6 @@
 const theme = {
   colorScheme: 'dark',
-  primaryColor: 'red',
+  primaryColor: 'grape',
 }
 
 export default theme;
